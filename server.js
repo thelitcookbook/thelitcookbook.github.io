@@ -113,7 +113,7 @@ app.post('/register', async (req, res) => {
     }
 
     // Create a new user and save it to the database
-    const user = new User({ username, password });
+    const user = new user({ username, password });
     await user.save();
 
     res.sendStatus(201);
