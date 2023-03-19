@@ -1,1 +1,1 @@
-# Tired of wondering what to cook? Welcome to the LIT Cookbook
+# Tired of wondering what to cook? Welcome to The Lit Cookbook where you can document what you have or will make, add the ingredients, add the recipe, and integrate with Instacart to instantly add the ingredients to your shopping cart.
