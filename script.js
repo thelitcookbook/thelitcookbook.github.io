@@ -12,3 +12,22 @@ document.getElementById('add-recipe-btn').addEventListener('click', () => {
     // Save the recipe to the user's profile (you will implement this functionality in the backend)
     console.log({ recipeName, ingredients, tags });
 });
+
+document.getElementById('register-btn').addEventListener('click', async () => {
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+
+    const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+        alert('Account created successfully! You can now log in.');
+    } else {
+        alert('Error: Unable to create account.');
+    }
+});
