@@ -1,23 +1,37 @@
-document.getElementById('login-btn').addEventListener('click', () => {
-    // You can add authentication logic here
-    document.querySelector('.login-form').style.display = 'none';
-    document.querySelector('.add-recipe-form').style.display = 'block';
+document.addEventListener('DOMContentLoaded', async () => {
+    const loggedIn = document.getElementById('loggedIn');
+    const notLoggedIn = document.getElementById('notLoggedIn');
+    const response = await fetch('/is-logged-in');
+
+    if (response.ok) {
+        loggedIn.style.display = 'block';
+        notLoggedIn.style.display = 'none';
+    } else {
+        loggedIn.style.display = 'none';
+        notLoggedIn.style.display = 'block';
+    }
 });
 
-document.getElementById('add-recipe-btn').addEventListener('click', () => {
-    const recipeName = prompt('Enter the name of the recipe:');
-    const ingredients = prompt('Enter the ingredients, separated by commas:');
-    const tags = prompt('Enter any tags, separated by commas:');
+// ... (rest of the script.js code)
+document.addEventListener('DOMContentLoaded', async () => {
+    const loggedIn = document.getElementById('loggedIn');
+    const notLoggedIn = document.getElementById('notLoggedIn');
+    const response = await fetch('/is-logged-in');
 
-    // Save the recipe to the user's profile (you will implement this functionality in the backend)
-    console.log({ recipeName, ingredients, tags });
+    if (response.ok) {
+        loggedIn.style.display = 'block';
+        notLoggedIn.style.display = 'none';
+    } else {
+        loggedIn.style.display = 'none';
+        notLoggedIn.style.display = 'block';
+    }
 });
 
-document.getElementById('register-btn').addEventListener('click', async () => {
-    const username = document.getElementById('register-username').value;
-    const password = document.getElementById('register-password').value;
+async function handleLoginClick() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
 
-    const response = await fetch('/register', {
+    const response = await fetch('/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,8 +40,26 @@ document.getElementById('register-btn').addEventListener('click', async () => {
     });
 
     if (response.ok) {
-        alert('Account created successfully! You can now log in.');
+        alert('Logged in successfully!');
+        location.reload(); // Reload the page to update the UI
     } else {
-        alert('Error: Unable to create account.');
+        alert('Error: Invalid username or password.');
     }
-});
+}
+
+document.getElementById('login-btn').addEventListener('click', handleLoginClick);
+
+async function handleLogoutClick() {
+    const response = await fetch('/logout', {
+        method: 'POST',
+    });
+
+    if (response.ok) {
+        alert('Logged out successfully!');
+        location.reload(); // Reload the page to update the UI
+    } else {
+        alert('Error: Unable to log out.');
+    }
+}
+
+document.getElementById('logout-btn').addEventListener('click', handleLogoutClick);
