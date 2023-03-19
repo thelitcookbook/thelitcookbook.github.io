@@ -1,31 +1,25 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const loggedIn = document.getElementById('loggedIn');
     const notLoggedIn = document.getElementById('notLoggedIn');
-    const response = await fetch('/is-logged-in');
 
-    if (response.ok) {
-        loggedIn.style.display = 'block';
-        notLoggedIn.style.display = 'none';
-    } else {
+    try {
+        const response = await fetch('/is-logged-in');
+
+        if (response.ok) {
+            loggedIn.style.display = 'block';
+            notLoggedIn.style.display = 'none';
+        } else {
+            loggedIn.style.display = 'none';
+            notLoggedIn.style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Error fetching /is-logged-in:', error);
         loggedIn.style.display = 'none';
         notLoggedIn.style.display = 'block';
     }
 });
 
 // ... (rest of the script.js code)
-document.addEventListener('DOMContentLoaded', async () => {
-    const loggedIn = document.getElementById('loggedIn');
-    const notLoggedIn = document.getElementById('notLoggedIn');
-    const response = await fetch('/is-logged-in');
-
-    if (response.ok) {
-        loggedIn.style.display = 'block';
-        notLoggedIn.style.display = 'none';
-    } else {
-        loggedIn.style.display = 'none';
-        notLoggedIn.style.display = 'block';
-    }
-});
 
 async function handleLoginClick() {
     const username = document.getElementById('login-username').value;
