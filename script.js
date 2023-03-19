@@ -63,3 +63,24 @@ async function handleLogoutClick() {
 }
 
 document.getElementById('logout-btn').addEventListener('click', handleLogoutClick);
+
+async function handleRegisterClick() {
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+
+    const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+        alert('Account created successfully! You can now log in.');
+    } else {
+        alert('Error: Unable to create an account.');
+    }
+}
+
+document.getElementById('register-btn').addEventListener('click', handleRegisterClick);

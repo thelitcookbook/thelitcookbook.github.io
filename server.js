@@ -100,3 +100,22 @@ app.post('/logout', (req, res) => {
         }
     });
 });
+
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+
+    // Check if the user already exists
+    const existingUser = await User.findOne({ username });
+
+    if (existingUser) {
+        res.status(409).send('User already exists');
+        return;
+    }
+
+    // Create a new user and save it to the database
+    const user = new User({ username, password });
+    await user.save();
+
+    res.sendStatus(201);
+});
+
