@@ -1,0 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.main-title {
+    color: red;
+}
+
+.login-form input {
+    display: block;
+    margin: 10px auto;
+}
+
+.add-recipe-form input, .add-recipe-form textarea {
+    display: block;
+    margin: 10px auto;
+}
